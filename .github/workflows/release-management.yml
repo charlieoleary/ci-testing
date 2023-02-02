@@ -18,6 +18,7 @@ jobs:
         node-version: 18.x
     - name: Install semantic-release extra plugins
       run: npm install --save-dev @semantic-release/github
+    - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npx semantic-release
