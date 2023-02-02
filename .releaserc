@@ -11,3 +11,5 @@ analyzeCommits:
     releaseRules:
     - type: "breaking"
       release: "major"
+    - type: "release"
+      release: "major"
