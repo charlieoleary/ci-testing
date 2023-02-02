@@ -3,7 +3,7 @@ module.exports = {
     'main', 'master'
   ],
   plugins: [
-    '@semantic-release/commit-analyzer',
+    //'@semantic-release/commit-analyzer',
     '@semantic-release/github',
   ]
 }
