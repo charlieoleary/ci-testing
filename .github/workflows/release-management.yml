@@ -1,0 +1,20 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Release Management
+on:
+  push:
+    branches: [ "master", "main" ]
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
+        with:
+          semantic_version: 20
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          
