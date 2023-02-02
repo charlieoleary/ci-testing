@@ -1,23 +1,20 @@
-name: Release
+name: Release Management
 
 on:
   push:
     branches: [main, master]
 
 jobs:
-  release:
-    name: Release
+  release-management:
+    name: Release Management
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup Node.js
+    - name: Setup NodeJS
       uses: actions/setup-node@v1
       with:
         node-version: 18.x
-    - name: Install semantic-release extra plugins
-      run: npm install --save-dev @semantic-release/github
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
