@@ -26,4 +26,4 @@ jobs:
       - name: Refs
         run: |
           echo "ref: ${{github.ref}}"
-          echo "ref_name: ${{githb.ref_name}}"
+          echo "ref_name: ${{github.ref_name}}"
