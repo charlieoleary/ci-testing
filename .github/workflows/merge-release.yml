@@ -25,5 +25,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Refs
         run: |
-          echo "ref: ${{github.ref}}"
-          echo "ref_name: ${{github.ref_name}}"
+          echo "$GITHUB_CONTEXT"
