@@ -25,4 +25,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Refs
         run: |
-          echo GITHUB_CONTEXT: ${{ toJSON(github) }}
+          echo "${{ toJSON(github) }}"
