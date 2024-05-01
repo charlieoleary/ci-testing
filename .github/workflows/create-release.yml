@@ -1,20 +1,20 @@
-name: Create Release Candidate
+# name: Create Release Candidate
 
-on:
-  push:
-    branches: [ "release/**" ]
+# on:
+#   push:
+#     branches: [ "release/**" ]
 
-  workflow_dispatch:
+#   workflow_dispatch:
 
-jobs:
-  create_rc:
-    if: github.event.created
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+# jobs:
+#   create_rc:
+#     if: github.event.created
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - name: Refs
-        env: 
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: |
-          echo "$GITHUB_CONTEXT"
+#       - name: Refs
+#         env: 
+#           GITHUB_CONTEXT: ${{ toJSON(github) }}
+#         run: |
+#           echo "$GITHUB_CONTEXT"
