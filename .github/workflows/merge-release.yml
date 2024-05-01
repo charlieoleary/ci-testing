@@ -41,5 +41,4 @@ jobs:
           name: Release ${{ steps.version.outputs.version }}
           commit: main
           tag: ${{ steps.version.outputs.version }}
-          body: Changelog Contents
           token: ${{ github.token }}
