@@ -10,22 +10,21 @@ jobs:
   build_rc:
     runs-on: ubuntu-latest
     steps:
-      - name: Refs
       - uses: actions/checkout@v4
+
+      - name: Refs
         env: 
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
 
       - name: Get Docker Release Tag
-      - uses: actions/checkout@v4
         env:
           BRANCH: ${{ github.ref }}
         id: tag
         run: echo "::set-output name=branch::${BRANCH##refs/heads/}"
 
       - name: Show Docker Tag
-      - uses: actions/checkout@v4
         env:
           TAG_NAME: ${{ steps.tag.outputs.branch }}
         run: echo "tag will be called $TAG_NAME"

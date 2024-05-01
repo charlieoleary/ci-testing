@@ -12,8 +12,9 @@ jobs:
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Refs
       - uses: actions/checkout@v4
+
+      - name: Refs
         env: 
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: |
@@ -37,7 +38,6 @@ jobs:
           token: ${{ github.token }}
 
       - name: Show Docker Tags
-      - uses: actions/checkout@v4
         env:
           TAG_NAME: ${{ github.head_ref }}
           VERSION_TAG: ${{ steps.semver.outputs.next }}
