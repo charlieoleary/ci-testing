@@ -20,12 +20,9 @@ jobs:
         run: |
           echo "$GITHUB_CONTEXT"
 
-      - name: Get Next Version
-        uses: ietf-tools/semver-action@v1
-        id: semver
-        with:
-          token: ${{ github.token }}
-          branch: main
+      - name: Gen Versioning Data
+        uses: Soumeh/Auto-Versioning@main
+        id: versioning
 
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
@@ -33,12 +30,12 @@ jobs:
           allowUpdates: true
           draft: false
           makeLatest: true
-          name: ${{ steps.semver.outputs.next }}
+          name: ${{ steps.versioning.outputs.tag }}
           body: Changelog Contents
           token: ${{ github.token }}
 
       - name: Show Docker Tags
         env:
           TAG_NAME: ${{ github.head_ref }}
-          VERSION_TAG: ${{ steps.semver.outputs.next }}
+          VERSION_TAG: ${{ steps.versioning.outputs.tag }}
         run: echo "tag $TAG_NAME will be re-tagged as $VERSION_TAG"
