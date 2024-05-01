@@ -38,6 +38,8 @@ jobs:
           allowUpdates: true
           draft: false
           makeLatest: true
-          name: ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
+          commit: main
+          tag: ${{ steps.version.outputs.version }}
           body: Changelog Contents
           token: ${{ github.token }}
