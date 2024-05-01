@@ -28,3 +28,14 @@ jobs:
         env:
           TAG_NAME: ${{ steps.tag.outputs.branch }}
         run: echo "tag will be called $TAG_NAME"
+
+      - name: Increment Calender Version
+        uses: reecetech/version-increment@2024.4.3
+        id: version
+        with:
+          scheme: calver
+
+      - name: Show Docker Tags
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: echo "tag would be $VERSION"

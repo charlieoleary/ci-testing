@@ -20,10 +20,17 @@ jobs:
         run: |
           echo "$GITHUB_CONTEXT"
 
-      - uses: paulhatch/semantic-version@v5.4.0
-        id: versioning
+      - name: Increment Calender Version
+        uses: reecetech/version-increment@2024.4.3
+        id: version
         with:
-          bump_each_commit: true
+          scheme: calver
+
+      - name: Show Docker Tags
+        env:
+          TAG_NAME: ${{ github.head_ref }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: echo "tag $TAG_NAME with $VERSION"
 
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
@@ -31,12 +38,6 @@ jobs:
           allowUpdates: true
           draft: false
           makeLatest: true
-          name: ${{ steps.versioning.outputs.version_tag }}
+          name: ${{ steps.version.outputs.version }}
           body: Changelog Contents
           token: ${{ github.token }}
-
-      - name: Show Docker Tags
-        env:
-          TAG_NAME: ${{ github.head_ref }}
-          VERSION_TAG: ${{ steps.versioning.outputs.tag }}
-        run: echo "tag $TAG_NAME will be re-tagged as $VERSION_TAG"
