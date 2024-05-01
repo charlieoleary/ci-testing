@@ -1,13 +1,14 @@
 name: Create Release Candidate
 
 on:
-  create:
-    branches: [ "release/**", "rc/**" ]
+  push:
+    branches: [ "release/**" ]
 
   workflow_dispatch:
 
 jobs:
   create_rc:
+    if: github.event.created
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
