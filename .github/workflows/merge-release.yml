@@ -20,9 +20,10 @@ jobs:
         run: |
           echo "$GITHUB_CONTEXT"
 
-      - name: Gen Versioning Data
-        uses: Soumeh/Auto-Versioning@main
+      - uses: paulhatch/semantic-version@latest
         id: versioning
+        with:
+          bump_each_commit: true
 
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
@@ -30,7 +31,7 @@ jobs:
           allowUpdates: true
           draft: false
           makeLatest: true
-          name: ${{ steps.versioning.outputs.tag }}
+          name: ${{ steps.versioning.outputs.version_tag }}
           body: Changelog Contents
           token: ${{ github.token }}
 

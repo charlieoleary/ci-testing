@@ -22,7 +22,7 @@ jobs:
         env:
           BRANCH: ${{ github.ref }}
         id: tag
-        run: echo "::set-output name=branch::${BRANCH##refs/heads/}"
+        run: echo "branch=${BRANCH##refs/heads/}" >> $GITHUB_OUTPUT
 
       - name: Show Docker Tag
         env:
